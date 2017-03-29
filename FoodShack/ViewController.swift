@@ -60,12 +60,30 @@ class ViewController: UIViewController {
         // | means from the superview
         // -0- means that the constraint from the top
         // name of the view and 50 pixels heigth
-        // theres no constraint in the leading part
-        addConstraint(format: "V:|-[topViewHolder(50)]")
+        // 0 pixels from the trailing edge of topViewHolder
+        //after it appears the next view "mainThumbViewHolder"
+        addConstraint(format: "V:|-[topViewHolder(50)]-0-[mainThumbViewHolder]")
         
         //horizontal
         // 0 margin from the left and from the right
         addConstraint(format: "H:|-0-[topViewHolder]-0-|")
+        
+        /** MAIN VIEW HOLDER **/
+        addConstraint(format: "V:[mainThumbViewHolder(<=250@250)]-0-[buttonViewHolder]")
+        addConstraint(format: "V:[mainThumbViewHolder(>=150@250)]")
+        //0 pixels to the left and to the right
+        //same width of the topViewholder
+        addConstraint(format: "H:|-0-[mainThumbViewHolder(==topViewHolder)]-0-|")
+        
+        /** MAIN BUTTON HOLDER **/
+        addConstraint(format: "V:[buttonViewHolder(<=200)]-0-[bottomViewHolder]")
+        addConstraint(format: "V:[buttonViewHolder(>=100)]")
+        addConstraint(format: "H:|-0-[buttonViewHolder(==mainThumbViewHolder)]-0-|")
+        
+        /** BOTTOM VIEW HOLDER **/
+        // @250 - lowpriority
+        addConstraint(format: "V:[bottomViewHolder(50)]-|")
+        addConstraint(format: "H:|-0-[bottomViewHolder(==buttonViewHolder)]-0-|")
         
         NSLayoutConstraint.activate(self.constraints)
     }
