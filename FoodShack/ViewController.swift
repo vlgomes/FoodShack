@@ -39,12 +39,22 @@ class ViewController: UIViewController {
         self.topTitleLbl.text = "FOOD SHACK"
         self.topTitleLbl.textColor = UIColor(displayP3Red: 39.0/255.0, green: 61.0/255.0, blue: 72.0/255.0, alpha: 1.0)
         
+        self.burgerBtn.setImage(UIImage(named:"burger"), for: .normal)
+        self.pizzaBtn.setImage(UIImage(named:"pizza"), for: .normal)
+        self.sandwitchBtn.setImage(UIImage(named:"sandwich"), for: .normal)
+        self.tacoBtn.setImage(UIImage(named:"taco"), for: .normal)
+        
         self.topViewHolder.translatesAutoresizingMaskIntoConstraints = false
         self.mainThumbViewHolder.translatesAutoresizingMaskIntoConstraints = false
         self.buttonViewHolder.translatesAutoresizingMaskIntoConstraints = false
         self.bottomViewHolder.translatesAutoresizingMaskIntoConstraints = false
         self.topThumbBtn.translatesAutoresizingMaskIntoConstraints = false
         self.topTitleLbl.translatesAutoresizingMaskIntoConstraints = false
+        self.selectedItemThumbImg.translatesAutoresizingMaskIntoConstraints =  false
+        self.burgerBtn.translatesAutoresizingMaskIntoConstraints = false
+        self.pizzaBtn.translatesAutoresizingMaskIntoConstraints = false
+        self.sandwitchBtn.translatesAutoresizingMaskIntoConstraints = false
+        self.tacoBtn.translatesAutoresizingMaskIntoConstraints =  false
 
         self.view.addSubview(topViewHolder)
         self.view.addSubview(mainThumbViewHolder)
@@ -54,12 +64,24 @@ class ViewController: UIViewController {
         self.topViewHolder.addSubview(self.topThumbBtn)
         self.topViewHolder.addSubview(self.topTitleLbl)
         
+        self.mainThumbViewHolder.addSubview(self.selectedItemThumbImg)
+        
+        self.buttonViewHolder.addSubview(self.burgerBtn)
+        self.buttonViewHolder.addSubview(self.pizzaBtn)
+        self.buttonViewHolder.addSubview(self.sandwitchBtn)
+        self.buttonViewHolder.addSubview(self.tacoBtn)
+        
         self.views["topViewHolder"] = topViewHolder
         self.views["mainThumbViewHolder"] = mainThumbViewHolder
         self.views["buttonViewHolder"] = buttonViewHolder
         self.views["bottomViewHolder"] = bottomViewHolder
         self.views["topThumbBtn"] = topThumbBtn
         self.views["topTitleLbl"] = topTitleLbl
+        self.views["selectedItemThumbImg"] = selectedItemThumbImg
+        self.views["burgerBtn"] = burgerBtn
+        self.views["pizzaBtn"] = pizzaBtn
+        self.views["sandwitchBtn"] = sandwitchBtn
+        self.views["tacoBtn"] = tacoBtn
         
         setConstraints()
     }
@@ -103,8 +125,27 @@ class ViewController: UIViewController {
         /** TOP TITLE LABEL **/
         addConstraint(format: "V:|-5-[topTitleLbl(40)]")
         addConstraint(format: "H:[topTitleLbl(>=50)]")
-
         
+        /** SELECTED THUMB IMAGE**/
+        addConstraint(format: "V:|-15-[selectedItemThumbImg(200@250)]-25-|")
+        addConstraint(format: "H:|-25-[selectedItemThumbImg(200@250)]-25-|")
+        
+        /** BURGER BUTTON **/
+        addConstraint(format: "V:|-15-[burgerBtn(75)]")
+        addConstraint(format: "H:|-40-[burgerBtn(75)]")
+        
+        /** PIZZA BUTTON **/
+        addConstraint(format: "V:[pizzaBtn(75)]-15-|")
+        addConstraint(format: "H:|-40-[pizzaBtn(75)]")
+        
+        /** SANDWITCH BUTTON **/
+        addConstraint(format: "V:|-15-[sandwitchBtn(75)]")
+        addConstraint(format: "H:[sandwitchBtn(75)]-40-|")
+        
+        /** TACO BUTTON **/
+        addConstraint(format: "V:[tacoBtn(75)]-15-|")
+        addConstraint(format: "H:[tacoBtn(75)]-40-|")
+
         NSLayoutConstraint.activate(self.constraints)
     }
     
