@@ -35,20 +35,31 @@ class ViewController: UIViewController {
         self.buttonViewHolder.backgroundColor = UIColor(displayP3Red: 242.0/255.0, green: 241.0/255.0, blue: 239.0/255.0, alpha: 1.0)
         self.bottomViewHolder.backgroundColor =  UIColor(displayP3Red: 39.0/255.0, green: 61.0/255.0, blue: 72.0/255.0, alpha: 1.0)
         
+        self.topThumbBtn.setImage(UIImage(named:"burger"), for: .normal)
+        self.topTitleLbl.text = "FOOD SHACK"
+        self.topTitleLbl.textColor = UIColor(displayP3Red: 39.0/255.0, green: 61.0/255.0, blue: 72.0/255.0, alpha: 1.0)
+        
         self.topViewHolder.translatesAutoresizingMaskIntoConstraints = false
         self.mainThumbViewHolder.translatesAutoresizingMaskIntoConstraints = false
         self.buttonViewHolder.translatesAutoresizingMaskIntoConstraints = false
         self.bottomViewHolder.translatesAutoresizingMaskIntoConstraints = false
+        self.topThumbBtn.translatesAutoresizingMaskIntoConstraints = false
+        self.topTitleLbl.translatesAutoresizingMaskIntoConstraints = false
 
         self.view.addSubview(topViewHolder)
         self.view.addSubview(mainThumbViewHolder)
         self.view.addSubview(buttonViewHolder)
         self.view.addSubview(bottomViewHolder)
         
+        self.topViewHolder.addSubview(self.topThumbBtn)
+        self.topViewHolder.addSubview(self.topTitleLbl)
+        
         self.views["topViewHolder"] = topViewHolder
         self.views["mainThumbViewHolder"] = mainThumbViewHolder
         self.views["buttonViewHolder"] = buttonViewHolder
         self.views["bottomViewHolder"] = bottomViewHolder
+        self.views["topThumbBtn"] = topThumbBtn
+        self.views["topTitleLbl"] = topTitleLbl
         
         setConstraints()
     }
@@ -84,6 +95,15 @@ class ViewController: UIViewController {
         // @250 - lowpriority
         addConstraint(format: "V:[bottomViewHolder(50)]-|")
         addConstraint(format: "H:|-0-[bottomViewHolder(==buttonViewHolder)]-0-|")
+        
+        /** TOP THUMB BUTTON **/
+        addConstraint(format: "V:|-5-[topThumbBtn(40)]")
+        addConstraint(format: "H:|-5-[topThumbBtn(40)]-10-[topTitleLbl]")
+
+        /** TOP TITLE LABEL **/
+        addConstraint(format: "V:|-5-[topTitleLbl(40)]")
+        addConstraint(format: "H:[topTitleLbl(>=50)]")
+
         
         NSLayoutConstraint.activate(self.constraints)
     }
